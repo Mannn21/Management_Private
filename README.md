@@ -1,36 +1,175 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Manajemen Les Privat
 
-## Getting Started
+Aplikasi web fullstack untuk mengelola data siswa les privat. Dibangun menggunakan Next.js App Router, Prisma ORM, dan PostgreSQL (Neon), dengan tampilan yang responsif menggunakan Tailwind CSS dan shadcn/ui.
 
-First, run the development server:
+## Demo
+
+> 🔗 Link demo: https://management-private.vercel.app
+> 
+> 📸 Screenshot: _menyusul_
+
+---
+
+## Fitur
+
+- ✅ Tambah data siswa baru
+- ✅ Lihat daftar semua siswa
+- ✅ Edit data siswa
+- ✅ Hapus data siswa
+- ✅ Tampilan responsif (tabel di desktop, card di mobile)
+- ✅ Validasi input di frontend dan backend
+- ✅ Format response API yang konsisten
+
+---
+
+## Tech Stack
+
+| Kategori | Teknologi |
+|----------|-----------|
+| Framework | [Next.js 15](https://nextjs.org/) (App Router) |
+| Bahasa | JavaScript |
+| Database | [PostgreSQL](https://www.postgresql.org/) via [Neon](https://neon.tech/) |
+| ORM | [Prisma 7](https://www.prisma.io/) |
+| Styling | [Tailwind CSS](https://tailwindcss.com/) |
+| UI Components | [shadcn/ui](https://ui.shadcn.com/) |
+| Deployment | [Vercel](https://vercel.com/) |
+
+---
+
+## Struktur Project
+
+```
+manajement-private/
+├── app/
+│   ├── api/
+│   │   └── siswa/
+│   │       ├── route.js          # GET semua siswa, POST tambah siswa
+│   │       └── [id]/
+│   │           └── route.js      # GET by id, PUT, DELETE
+│   ├── siswa/
+│   │   ├── tambah/
+│   │   │   └── page.js           # Halaman tambah siswa
+│   │   └── [id]/
+│   │       └── edit/
+│   │           └── page.js       # Halaman edit siswa
+│   ├── layout.tsx
+│   └── page.tsx                  # Halaman utama (daftar siswa)
+├── components/
+│   ├── ui/                       # Komponen shadcn/ui
+│   ├── SiswaTable/               # Komponen tabel & card siswa
+│   └── SiswaForm/                # Komponen form tambah & edit siswa
+├── lib/
+│   ├── prisma.js                 # Prisma client singleton
+│   ├── response.js               # Helper response API (successResponse, errorResponse)
+│   └── api.js                    # Helper fetch ke API endpoints
+└── prisma/
+    └── schema.prisma             # Schema database
+```
+
+---
+
+## Memulai (Development)
+
+### Prasyarat
+
+- Node.js 18+
+- Akun [Neon](https://neon.tech/) (untuk database PostgreSQL)
+
+### Instalasi
+
+1. Clone repository
+
+```bash
+git clone https://github.com/username/manajement-private.git
+cd manajement-private
+```
+
+2. Install dependencies
+
+```bash
+npm install
+```
+
+3. Buat file `.env` di root project
+
+```env
+DATABASE_URL="postgresql://..."       # Pooled connection string dari Neon
+DIRECT_URL="postgresql://..."         # Direct connection string dari Neon
+NEXT_PUBLIC_BASE_URL="http://localhost:3000"
+```
+
+4. Jalankan migrasi database
+
+```bash
+npx prisma migrate dev
+```
+
+5. Jalankan server development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Buka [http://localhost:3000](http://localhost:3000) di browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## API Endpoints
 
-## Learn More
+| Method | Endpoint | Deskripsi |
+|--------|----------|-----------|
+| GET | `/api/siswa` | Ambil semua data siswa |
+| POST | `/api/siswa` | Tambah siswa baru |
+| GET | `/api/siswa/:id` | Ambil data siswa by ID |
+| PUT | `/api/siswa/:id` | Update data siswa |
+| DELETE | `/api/siswa/:id` | Hapus data siswa |
 
-To learn more about Next.js, take a look at the following resources:
+### Format Response
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Semua endpoint menggunakan format response yang konsisten:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```json
+// Sukses
+{
+  "success": true,
+  "message": "Berhasil",
+  "data": {},
+  "meta": {
+    "timestamp": "2026-07-04T10:00:00.000Z"
+  }
+}
 
-## Deploy on Vercel
+// Error
+{
+  "success": false,
+  "message": "Pesan error",
+  "data": null,
+  "meta": {
+    "timestamp": "2026-07-04T10:00:00.000Z"
+  }
+}
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment
+
+Project ini di-deploy ke Vercel dengan database PostgreSQL di Neon.
+
+Saat deploy, tambahkan environment variables berikut di Vercel dashboard:
+
+```
+DATABASE_URL
+DIRECT_URL
+NEXT_PUBLIC_BASE_URL
+```
+
+---
+
+## Lisensi
+
+[MIT](LICENSE)
+
+---
+
+> Dibuat oleh [Aimanurrofi](https://github.com/Mannn21) — sebagai project portofolio sekaligus alat bantu manajemen les privat harian.

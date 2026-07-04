@@ -1,0 +1,22 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Siswa {
+  id           Int      @id @default(autoincrement())
+  nama         String
+  usia         Int
+  jenisKelamin String
+  alamat       String
+  jenjang      String
+  sekolah      String?
+  namaOrtu     String?
+  noHp         String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
