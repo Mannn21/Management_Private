@@ -3,14 +3,15 @@ import { successResponse, errorResponse } from '../../../utils/response'
 
 // GET /api/siswa - ambil semua data siswa
 export async function GET() {
-    try {
-        const siswa = await prisma.siswa.findMany({
-            orderBy: { createdAt: 'desc' }
-        })
-        return successResponse(siswa, 'Data siswa berhasil didapatkan')
-    } catch (error) {
-        return errorResponse('Gagal mendapatkan data siswa', 500)
-    }
+  try {
+    const siswa = await prisma.siswa.findMany({
+      orderBy: { createdAt: 'desc' }
+    })
+    return successResponse(siswa, "Data siswa berhasil diambil")
+  } catch (error) {
+    console.error("GET /api/siswa error:", error) // tambah ini
+    return errorResponse("Gagal mendapatkan data siswa", 500)
+  }
 }
 
 // POST /api/siswa - buat data siswa baru
