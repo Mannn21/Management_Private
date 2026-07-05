@@ -5,7 +5,8 @@ import { usePathname } from "next/navigation"
 import LogoutButton from "@/components/LogoutButton"
 
 const navLinks = [
-    {href: "/", label: "Siswa"},
+    {href: "/", label: "Dashboard"},
+    {href: "/siswa", label: "Siswa"},
     {href: "/jadwal", label: "Jadwal"}
 ]
 
