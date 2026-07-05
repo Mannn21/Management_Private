@@ -1,11 +1,13 @@
-import Link from 'next/link'
-import { getAllSiswa } from '@/lib/api'
-import { Button } from '@/components/ui/button'
-import SiswaTable from '@/components/SiswaTable'
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import SiswaTable from "@/components/SiswaTable"
+import LogoutButton from "@/components/LogoutButton"
+import prisma from "@/lib/prisma"
 
 export default async function Home() {
-  const result = await getAllSiswa()
-  const siswaList = result.success ? result.data : []
+  const siswaList = await prisma.siswa.findMany({
+    orderBy: { createdAt: 'desc' }
+  })
 
   return (
     <main className="container mx-auto px-4 py-8">
@@ -16,9 +18,10 @@ export default async function Home() {
             {siswaList.length} Siswa Terdaftar
           </p>
         </div>
-        <Link href="/siswa/new">
+        <Link href="/siswa/tambah">
           <Button>Tambah Siswa</Button>
         </Link>
+        <LogoutButton />
       </div>
 
       <SiswaTable siswaList={siswaList} />
