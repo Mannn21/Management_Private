@@ -5,9 +5,18 @@ export default auth(req => {
     const isLoggedIn = !!req.auth
     const isAuthRoute = req.nextUrl.pathname.startsWith("/login")
     const isApiAuth = req.nextUrl.pathname.startsWith("/api/auth")
+    const isApiRoute = req.nextUrl.pathname.startsWith("/api")
 
     // Biarkan route auth lewat
     if (isApiAuth) return NextResponse.next()
+
+    // Kalau API route tapi blm login, return 401 JSON
+    if (isApiRoute && !isLoggedIn) {
+        return NextResponse.json(
+            { success: false, message: "Unauthorized", data: null, meta: null },
+            { status: 401 }
+        )
+    }
 
     // Kalau sudah login dan akses halaman login, maka redirect ke dashboard
     if (isLoggedIn && isAuthRoute) {

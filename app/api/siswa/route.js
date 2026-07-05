@@ -1,5 +1,5 @@
-import prisma from '../../../lib/prisma'
-import { successResponse, errorResponse } from '../../../utils/response'
+import prisma from '@/lib/prisma'
+import { successResponse, errorResponse } from '@/utils/response'
 
 // GET /api/siswa - ambil semua data siswa
 export async function GET() {

@@ -19,4 +19,19 @@ model Siswa {
   noHp         String?
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+  jadwal       Jadwal[]
+}
+
+model Jadwal {
+  id         Int      @id @default(autoincrement())
+  siswaId    Int
+  siswa      Siswa    @relation(fields: [siswaId], references: [id], onDelete: Cascade)
+  hari       String
+  jamMulai   String
+  jamSelesai String
+  mapel      String
+  status     String   @default("Terjadwal")
+  catatan    String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }

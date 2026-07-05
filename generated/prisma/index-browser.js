@@ -134,6 +134,19 @@ exports.Prisma.SiswaScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.JadwalScalarFieldEnum = {
+  id: 'id',
+  siswaId: 'siswaId',
+  hari: 'hari',
+  jamMulai: 'jamMulai',
+  jamSelesai: 'jamSelesai',
+  mapel: 'mapel',
+  status: 'status',
+  catatan: 'catatan',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -151,7 +164,8 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  Siswa: 'Siswa'
+  Siswa: 'Siswa',
+  Jadwal: 'Jadwal'
 };
 
 /**
