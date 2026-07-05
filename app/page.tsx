@@ -18,7 +18,7 @@ export default async function Home() {
             {siswaList.length} Siswa Terdaftar
           </p>
         </div>
-        <Link href="/siswa/tambah">
+        <Link href="/siswa/new">
           <Button>Tambah Siswa</Button>
         </Link>
         <LogoutButton />

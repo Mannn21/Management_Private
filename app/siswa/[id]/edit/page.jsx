@@ -4,9 +4,11 @@ import { notFound } from "next/navigation"
 
 export default async function EditSiswaPage({ params }) {
     const { id } = await params
-    const result = await getSiswaById(id)
+    const siswa = await prisma.siswa.findUnique({
+        where: { id: parseInt(id) }
+    })
 
-    if (!result.success) {
+    if (!siswa) {
         notFound()
     }
 
@@ -16,7 +18,7 @@ export default async function EditSiswaPage({ params }) {
                 <h1 className="text-2xl font-bold">Edit Data Siswa</h1>
                 <p className="text-sm mt-1 text-muted-foreground">Field bertanda * wajib diisi</p>
             </div>
-            <SiswaForm initialData={result.data} />
+            <SiswaForm initialData={siswa} />
         </main>
     )
 }
