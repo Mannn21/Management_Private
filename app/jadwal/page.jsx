@@ -22,7 +22,7 @@ export default async function JadwalPage() {
                     <p className="text-muted-foreground text-sm mt-1">{jadwalList.length} jadwal terdaftar</p>
                 </div>
                 <Link href="/jadwal/new">
-                    <Button>Tambah Jadwal</Button>
+                    <Button className="cursor-pointer">Tambah Jadwal</Button>
                 </Link>
             </div>
 

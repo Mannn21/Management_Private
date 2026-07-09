@@ -162,10 +162,10 @@ export default function SiswaForm({ initialData = null }) {
             </div>
 
             <div className="flex gap-2 pt-2">
-                <Button type="submit" disabled={loading} >
+                <Button type="submit" className="cursor-pointer" disabled={loading} >
                     {loading ? 'Menyimpan...' : isEdit ? 'Perbarui' : 'Simpan'}
                 </Button>
-                <Button type="button" variant="secondary" onClick={() => router.push('/')}>
+                <Button type="button" className="cursor-pointer" variant="secondary" onClick={() => router.push('/')}>
                     Batal
                 </Button>
             </div>

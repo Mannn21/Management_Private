@@ -54,7 +54,7 @@ export default function LoginForm() {
                 <Label htmlFor="password">Password</Label>
                 <Input id="password" name="password" type="password" placeholder="********" value={form.password} onChange={handleChange} required /> 
             </div>
-            <Button type="submit" className="w-full" disabled={loading}>{loading? "Masuk..." : "Masuk"}</Button>
+            <Button type="submit" className="w-full cursor-pointer" disabled={loading}>{loading? "Masuk..." : "Masuk"}</Button>
         </form>
     )
 }

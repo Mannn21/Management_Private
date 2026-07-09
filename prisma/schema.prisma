@@ -1,6 +1,5 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
 }
 
 datasource db {
@@ -20,6 +19,7 @@ model Siswa {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
   jadwal       Jadwal[]
+  catatan      Catatan[]
 }
 
 model Jadwal {
@@ -36,3 +36,15 @@ model Jadwal {
   updatedAt    DateTime @updatedAt
 }
 
+model Catatan {
+  id          Int       @id @default(autoincrement())
+  siswaId     Int       
+  siswa       Siswa     @relation(fields: [siswaId], references: [id], onDelete: Cascade)
+  tanggal     DateTime
+  materi      String
+  pemahaman   String    @default("Cukup")
+  pr          String?
+  catatan     String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}

@@ -44,8 +44,8 @@ export default function JadwalForm({ initialData = null, siswaList = [] }) {
             return
         }
 
-        router.push("/jadwal")
         router.refresh()
+        router.push("/jadwal")
     }
 
     return (
@@ -113,8 +113,8 @@ export default function JadwalForm({ initialData = null, siswaList = [] }) {
             </div>
             
             <div className="flex gap-2 pt-2">
-                <Button type="submit" disabled={loading}>{loading ? "Menyimpan..." : isEdit ? "Simpan Perubahan" : "Tambah Jadwal"}</Button>
-                <Button type="button" variant="outline" onClick={() => router.push("/jadwal")}>Batal</Button>
+                <Button type="submit" className="cursor-pointer" disabled={loading}>{loading ? "Menyimpan..." : isEdit ? "Simpan Perubahan" : "Tambah Jadwal"}</Button>
+                <Button type="button" className="cursor-pointer" variant="outline" onClick={() => router.push("/jadwal")}>Batal</Button>
             </div>
             
         </form>

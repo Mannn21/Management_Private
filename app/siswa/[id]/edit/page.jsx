@@ -1,5 +1,5 @@
+import prisma from "@/lib/prisma"
 import SiswaForm from "@/components/SiswaForm"
-import { getSiswaById } from "@/lib/api"
 import { notFound } from "next/navigation"
 
 export default async function EditSiswaPage({ params }) {

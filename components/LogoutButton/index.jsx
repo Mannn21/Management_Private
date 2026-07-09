@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 
 export default function LogoutButton() {
     return (
-        <Button variant="outline" onClick={() => signOut({ callbackUrl: "/login" })}>
+        <Button variant="outline" className="cursor-pointer" onClick={() => signOut({ callbackUrl: "/login" })}>
             Keluar
         </Button>
     )

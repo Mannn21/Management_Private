@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import ButtonAksi from "@/components/ButtonAksi"
 
 const SiswaTable = ({ siswaList }) => {
     const router = useRouter()
@@ -58,24 +59,27 @@ const SiswaTable = ({ siswaList }) => {
                     <TableBody>
                         {siswaList.map((siswa, index) => (
                             <TableRow key={siswa.id}>
-                                <TableCell className="font-medium">{index + 1}</TableCell>
-                                <TableCell>{siswa.nama}</TableCell>
-                                <TableCell>{siswa.usia}</TableCell>
-                                <TableCell>{siswa.jenisKelamin}</TableCell>
+                                <TableCell className="font-medium text-black">{index + 1}</TableCell>
+                                <TableCell className="font-medium text-black">{siswa.nama}</TableCell>
+                                <TableCell className="font-medium text-black">{siswa.usia}</TableCell>
+                                <TableCell className="font-medium text-black">{siswa.jenisKelamin}</TableCell>
                                 <TableCell>
                                     <Badge variant="secondary">{siswa.jenjang}</Badge>
                                 </TableCell>
                                 <TableCell className="text-right space-x-2">
                                     <Button 
                                         variant="outline" 
-                                        size="sm" 
+                                        size="sm"
+                                        className="cursor-pointer"
                                         onClick={() => router.push(`/siswa/${siswa.id}/edit`)}
                                     >
                                         Edit
                                     </Button>
+                                    <ButtonAksi url={`/siswa/${siswa.id}`} label={"Detail"} />
                                     <Button
                                         variant="destructive"
                                         size="sm"
+                                        className="cursor-pointer"
                                         onClick={() => handleDelete(siswa.id)}
                                         disabled={loadingId === siswa.id}
                                     >
@@ -94,27 +98,34 @@ const SiswaTable = ({ siswaList }) => {
                         siswaList.map((siswa, index) => (
                             <Card key={siswa.id}>
                                 <CardHeader className="pb-2">
-                                    <CardTitle className="text-base">{siswa.nama}</CardTitle>
+                                    <CardTitle className="text-base font-semibold">{siswa.nama}</CardTitle>
                                     <Badge variant="secondary" className="w-fit">{siswa.jenjang}</Badge>
                                 </CardHeader>
                                 <CardContent className="space-y-1 text-sm text-muted-foreground">
-                                    <p>Usia: {siswa.usia || 'N/A'}</p>
-                                    <p>Jenis Kelamin: {siswa.jenisKelamin}</p>
-                                    <p>Sekolah: {siswa.sekolah || 'N/A'}</p>
-                                    <p>Jenjang: {siswa.jenjang || 'N/A'}</p>
-                                    <div className="flex gap-2 pt-2">
+                                    <p className="font-medium text-black">Usia: {siswa.usia || 'N/A'}</p>
+                                    <p className="font-medium text-black">Jenis Kelamin: {siswa.jenisKelamin}</p>
+                                    <p className="font-medium text-black">Sekolah: {siswa.sekolah || 'N/A'}</p>
+                                    <p className="font-medium text-black">Jenjang: {siswa.jenjang || 'N/A'}</p>
+                                    <div className="grid grid-cols-3 gap-2 pt-2">
                                         <Button 
                                             variant="outline" 
                                             size="sm"
-                                            className="flex-1"
+                                            className="w-full cursor-pointer"
                                             onClick={() => router.push(`/siswa/${siswa.id}/edit`)}
                                         >
                                             Edit
                                         </Button>
+
+                                        <ButtonAksi 
+                                            url={`/siswa/${siswa.id}`} 
+                                            label="Detail"
+                                            className="w-full cursor-pointer"
+                                        />
+
                                         <Button
                                             variant="destructive"
                                             size="sm"
-                                            className="flex-1"
+                                            className="w-full cursor-pointer"
                                             onClick={() => handleDelete(siswa.id)}
                                             disabled={loadingId === siswa.id}
                                         >

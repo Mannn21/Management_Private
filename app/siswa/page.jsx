@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import SiswaTable from "@/components/SiswaTable"
+import ButtonAksi from "@/components/ButtonAksi"
 import prisma from "@/lib/prisma"
 
 export default async function SiswaPage() {
@@ -17,9 +18,7 @@ export default async function SiswaPage() {
             {siswaList.length} siswa terdaftar
           </p>
         </div>
-        <Link href="/siswa/tambah">
-          <Button>+ Tambah Siswa</Button>
-        </Link>
+        <ButtonAksi className="cursor-pointer" url={"/siswa/new"} label={"+ Tambah Siswa"}/>
       </div>
 
       <SiswaTable siswaList={siswaList} />
