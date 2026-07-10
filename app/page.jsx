@@ -1,7 +1,6 @@
 import prisma from "@/lib/prisma"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Badge } from "@/components/ui/badge"
+import JadwalTable from "@/components/JadwalTable"
 
 const HARI = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"]
 
@@ -60,33 +59,8 @@ export default async function DashboardPage() {
         {jadwalHariIni.length === 0 ? (
           <p className="text-muted-foreground text-sm">Tidak ada jadwal hari ini.</p>
         ) : (
-          <div className="hidden md:block">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Siswa</TableHead>
-                  <TableHead>Jam</TableHead>
-                  <TableHead>Mapel</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Catatan</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {jadwalHariIni.map(jadwal => (
-                  <TableRow key={jadwal.id}>
-                    <TableCell className="font-medium">{jadwal.siswa.nama}</TableCell>
-                    <TableCell>{jadwal.jamMulai} - {jadwal.jamSelesai}</TableCell>
-                    <TableCell>{jadwal.mapel}</TableCell>
-                    <TableCell>
-                      <Badge variant={statusVariant(jadwal.status)}>
-                        {jadwal.status}
-                      </Badge>
-                    </TableCell>
-                    <TableCell>{jadwal.catatan || "-"}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+          <div>
+            <JadwalTable jadwalList={jadwalHariIni} />
           </div>
         )}
       </div>
